@@ -1,0 +1,66 @@
+/* Réinitialisation de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* Barre de navigation */
+.navbar {
+    background: #333;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.menu li {
+    position: relative;
+}
+
+.menu>li {
+    margin: 0 20px;
+}
+
+.menu a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: white;
+    transition: background 0.3s;
+}
+
+.menu a:hover {
+    background: #555;
+}
+
+/* Sous-menu déroulant */
+.sous-menu {
+    display: none;
+    position: absolute;
+    background: #444;
+    list-style: none;
+    min-width: 150px;
+    z-index: 1000;
+}
+
+.sous-menu li a {
+    padding: 10px 15px;
+}
+
+.deroulant:hover .sous-menu {
+    display: block;
+}
+
+/* Contenu */
+main {
+    padding: 40px;
+    text-align: center;
+}
