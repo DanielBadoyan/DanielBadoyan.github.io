@@ -1,45 +1,82 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Sommaire</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Daniel Badoyan</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <!-- Barre de navigation -->
-    <nav class="navbar">
-        <ul class="menu">
-            <li><a href="#">Accueil</a></li>
-            <li class="deroulant">
-                <a href="#">Projets ▼</a>
-                <ul class="sous-menu">
-                    <li><a href="#">Web</a></li>
-                    <li><a href="#">Mobile</a></li>
-                    <li><a href="#">Jeux</a></li>
-                </ul>
-            </li>
-            <li class="deroulant">
-                <a href="#">Compétences ▼</a>
-                <ul class="sous-menu">
-                    <li><a href="#">Frontend</a></li>
-                    <li><a href="#">Backend</a></li>
-                    <li><a href="#">Autres</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
+  <!-- ====== NAVBAR ====== -->
+  <nav class="navbar">
+    <div class="logo">Portfolio</div>
+    <ul class="nav-links">
+      <li><a href="#accueil">Accueil</a></li>
+      <li><a href="#projets">Projets</a></li>
+      <li><a href="#competences">Compétences</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-    <!-- Contenu principal -->
-    <main>
-        <h1>Bienvenue sur mon Portfolio</h1>
-        <p>Ceci est la page sommaire avec un menu clair et simple.</p>
-    </main>
+  <!-- ====== ACCUEIL ====== -->
+  <section id="accueil" class="hero">
+    <div class="hero-content">
+      <h1>Salut, moi c’est <span>Daniel Badoyan</span></h1>
+      <p>Étudiant en informatique — passionné de développement web et logiciel</p>
+      <a href="#projets" class="btn">Voir mes projets</a>
+    </div>
+  </section>
+
+  <!-- ====== PROJETS ====== -->
+  <section id="projets" class="section">
+    <h2>🚀 Mes Projets</h2>
+    <div class="projects-grid">
+      <div class="card">
+        <h3>Portfolio</h3>
+        <p>Site personnel avec GitHub Pages.</p>
+      </div>
+      <div class="card">
+        <h3>Application Web</h3>
+        <p>Projet en JavaScript avec API externe.</p>
+      </div>
+      <div class="card">
+        <h3>Jeu Python</h3>
+        <p>Petit jeu en Pygame pour expérimenter.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== COMPETENCES ====== -->
+  <section id="competences" class="section dark">
+    <h2>💻 Compétences</h2>
+    <div class="skills">
+      <div class="skill">
+        <p>HTML / CSS</p>
+        <div class="bar"><span style="width: 90%"></span></div>
+      </div>
+      <div class="skill">
+        <p>JavaScript</p>
+        <div class="bar"><span style="width: 75%"></span></div>
+      </div>
+      <div class="skill">
+        <p>Python</p>
+        <div class="bar"><span style="width: 80%"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CONTACT ====== -->
+  <section id="contact" class="section">
+    <h2>📩 Contact</h2>
+    <p>Envie de collaborer ? Écris-moi :</p>
+    <a href="mailto:daniel.badoyan@example.com" class="btn">Me contacter</a>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer>
+    <p>© 2025 - Portfolio Daniel Badoyan</p>
+  </footer>
 
 </body>
-
 </html>
