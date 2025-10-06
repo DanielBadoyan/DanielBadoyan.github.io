@@ -88,24 +88,40 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       display: none;
       text-align: left;
+      display: flex;
+      gap: 20px;
     }
     .td-details.active {
-      display: block;
+      display: flex;
     }
-    .td-details h3 {
+    .td-content {
+      flex: 1;
+    }
+    .td-content h3 {
       font-size: 1.5rem;
       margin-bottom: 10px;
     }
-    .td-details p {
+    .td-content p {
       font-size: 1rem;
       margin-bottom: 10px;
     }
-    .td-details a {
+    .td-content a {
       color: #00adb5;
       text-decoration: none;
+      margin-right: 10px;
     }
-    .td-details a:hover {
+    .td-content a:hover {
       text-decoration: underline;
+    }
+    .td-pdf-viewer {
+      flex: 2;
+      height: 500px;
+    }
+    .td-pdf-viewer iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 8px;
     }
 
     /* Skills */
@@ -131,6 +147,8 @@
       .nav-active { display: flex; }
       .burger { display: block; cursor: pointer; }
       .dropdown select { width: 100%; }
+      .td-details { flex-direction: column; }
+      .td-pdf-viewer { height: 300px; }
     }
     .burger { display: none; flex-direction: column; cursor: pointer; }
     .burger div {
@@ -180,45 +198,50 @@
       </select>
     </div>
     <div id="td-details" class="td-details">
-      <div id="td1" class="td-content">
-        <h3>TD n°1 - Introduction aux systèmes</h3>
-        <p>Exploration des bases des systèmes d'exploitation : architecture, commandes Linux de base.</p>
-        <p><a href="#">Voir le code</a> | <a href="#">Télécharger le PDF</a></p>
+      <div class="td-content">
+        <div id="td1" class="td-content-inner">
+          <h3>TD n°1 - Introduction aux systèmes</h3>
+          <p>Exploration des bases des systèmes d'exploitation : architecture, commandes Linux de base.</p>
+          <p><a href="#">Voir le code</a> | <a href="pdfs/td1.pdf" download>Télécharger le PDF</a></p>
+        </div>
+        <div id="td2" class="td-content-inner">
+          <h3>TD n°2 - Gestion des processus</h3>
+          <p>Étude des processus Linux, utilisation de `ps`, `top`, et création de scripts pour gérer les processus.</p>
+          <p><a href="#">Voir le code</a> | <a href="pdfs/td2.pdf" download>Télécharger le PDF</a></p>
+        </div>
+        <div id="td3" class="td-content-inner">
+          <h3>TD n°3 - Gestion de la mémoire</h3>
+          <p>Analyse de la gestion de la mémoire dans les systèmes d'exploitation, avec des exemples pratiques.</p>
+          <p><a href="#">Voir le code</a> | <a href="pdfs/td3.pdf" download>Télécharger le PDF</a></p>
+        </div>
+        <div id="td4" class="td-content-inner">
+          <h3>TD n°4 - Systèmes de fichiers</h3>
+          <p>Étude des systèmes de fichiers (ext4, NTFS) et manipulation via des commandes Linux.</p>
+          <p><a href="#">Voir le code</a> | <a href="pdfs/td4.pdf" download>Télécharger le PDF</a></p>
+        </div>
+        <div id="td5" class="td-content-inner">
+          <h3>TD n°5 - Réseaux de base</h3>
+          <p>Configuration réseau, utilisation de `ping`, `netstat`, et analyse de paquets.</p>
+          <p><a href="#">Voir le code</a> | <a href="pdfs/td5.pdf" download>Télécharger le PDF</a></p>
+        </div>
+        <div id="td6" class="td-content-inner">
+          <h3>TD n°6 - Sécurité informatique</h3>
+          <p>Introduction aux concepts de sécurité : pare-feu, permissions, et bonnes pratiques.</p>
+          <p><a href="#">Voir le code</a> | <a href="pdfs/td6.pdf" download>Télécharger le PDF</a></p>
+        </div>
+        <div id="td7" class="td-content-inner">
+          <h3>TD n°7 - Scripts shell</h3>
+          <p>Création de scripts shell pour automatiser des tâches dans un environnement Linux.</p>
+          <p><a href="#">Voir le code</a> | <a href="pdfs/td7.pdf" download>Télécharger le PDF</a></p>
+        </div>
+        <div id="td8" class="td-content-inner">
+          <h3>TD n°8 - Virtualisation</h3>
+          <p>Utilisation de VirtualBox pour créer et gérer des machines virtuelles.</p>
+          <p><a href="#">Voir le code</a> | <a href="pdfs/td8.pdf" download>Télécharger le PDF</a></p>
+        </div>
       </div>
-      <div id="td2" class="td-content">
-        <h3>TD n°2 - Gestion des processus</h3>
-        <p>Étude des processus Linux, utilisation de `ps`, `top`, et création de scripts pour gérer les processus.</p>
-        <p><a href="#">Voir le code</a> | <a href="#">Télécharger le PDF</a></p>
-      </div>
-      <div id="td3" class="td-content">
-        <h3>TD n°3 - Gestion de la mémoire</h3>
-        <p>Analyse de la gestion de la mémoire dans les systèmes d'exploitation, avec des exemples pratiques.</p>
-        <p><a href="#">Voir le code</a> | <a href="#">Télécharger le PDF</a></p>
-      </div>
-      <div id="td4" class="td-content">
-        <h3>TD n°4 - Systèmes de fichiers</h3>
-        <p>Étude des systèmes de fichiers (ext4, NTFS) et manipulation via des commandes Linux.</p>
-        <p><a href="#">Voir le code</a> | <a href="#">Télécharger le PDF</a></p>
-      </div>
-      <div id="td5" class="td-content">
-        <h3>TD n°5 - Réseaux de base</h3>
-        <p>Configuration réseau, utilisation de `ping`, `netstat`, et analyse de paquets.</p>
-        <p><a href="#">Voir le code</a> | <a href="#">Télécharger le PDF</a></p>
-      </div>
-      <div id="td6" class="td-content">
-        <h3>TD n°6 - Sécurité informatique</h3>
-        <p>Introduction aux concepts de sécurité : pare-feu, permissions, et bonnes pratiques.</p>
-        <p><a href="#">Voir le code</a> | <a href="#">Télécharger le PDF</a></p>
-      </div>
-      <div id="td7" class="td-content">
-        <h3>TD n°7 - Scripts shell</h3>
-        <p>Création de scripts shell pour automatiser des tâches dans un environnement Linux.</p>
-        <p><a href="#">Voir le code</a> | <a href="#">Télécharger le PDF</a></p>
-      </div>
-      <div id="td8" class="td-content">
-        <h3>TD n°8 - Virtualisation</h3>
-        <p>Utilisation de VirtualBox pour créer et gérer des machines virtuelles.</p>
-        <p><a href="#">Voir le code</a> | <a href="#">Télécharger le PDF</a></p>
+      <div class="td-pdf-viewer">
+        <iframe id="pdf-viewer" src=""></iframe>
       </div>
     </div>
     <div class="projects-grid">
@@ -280,11 +303,32 @@
 
     function showTDDetails(td) {
       const detailsContainer = document.getElementById('td-details');
-      const allTDs = document.querySelectorAll('.td-content');
+      const allTDs = document.querySelectorAll('.td-content-inner');
+      const pdfViewer = document.getElementById('pdf-viewer');
+      
+      // Masquer tous les contenus des TD
       allTDs.forEach(tdContent => tdContent.style.display = 'none');
+      
+      // Réinitialiser l'iframe
+      pdfViewer.src = '';
+
       if (td) {
+        // Afficher le contenu du TD sélectionné
         document.getElementById(td).style.display = 'block';
         detailsContainer.classList.add('active');
+
+        // Charger le PDF correspondant dans l'iframe
+        const pdfPaths = {
+          td1: 'pdfs/td1.pdf',
+          td2: 'pdfs/td2.pdf',
+          td3: 'pdfs/td3.pdf',
+          td4: 'pdfs/td4.pdf',
+          td5: 'pdfs/td5.pdf',
+          td6: 'pdfs/td6.pdf',
+          td7: 'pdfs/td7.pdf',
+          td8: 'pdfs/td8.pdf'
+        };
+        pdfViewer.src = pdfPaths[td] || '';
       } else {
         detailsContainer.classList.remove('active');
       }
