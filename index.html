@@ -58,6 +58,56 @@
     }
     .card:hover { transform: translateY(-8px); }
 
+    /* Dropdown Menu */
+    .dropdown {
+      margin-bottom: 30px;
+    }
+    .dropdown select {
+      padding: 12px 20px;
+      font-size: 1rem;
+      border: 2px solid #00adb5;
+      border-radius: 30px;
+      background: #fff;
+      color: #222;
+      cursor: pointer;
+      transition: 0.3s;
+      width: 200px;
+      outline: none;
+    }
+    .dropdown select:hover {
+      background: #00adb5;
+      color: #fff;
+    }
+
+    /* TD Details */
+    .td-details {
+      margin-top: 20px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: none;
+      text-align: left;
+    }
+    .td-details.active {
+      display: block;
+    }
+    .td-details h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+    .td-details p {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+    .td-details a {
+      color: #00adb5;
+      text-decoration: none;
+    }
+    .td-details a:hover {
+      text-decoration: underline;
+    }
+
     /* Skills */
     .skills { max-width: 600px; margin: auto; }
     .skill { margin-bottom: 20px; text-align: left; }
@@ -80,6 +130,7 @@
       .nav-links li { margin: 15px 0; }
       .nav-active { display: flex; }
       .burger { display: block; cursor: pointer; }
+      .dropdown select { width: 100%; }
     }
     .burger { display: none; flex-direction: column; cursor: pointer; }
     .burger div {
@@ -115,6 +166,61 @@
   <!-- ====== PROJETS ====== -->
   <section id="projets" class="section">
     <h2>🚀 Mes Projets</h2>
+    <div class="dropdown">
+      <select name="td-selection" id="td-selection" onchange="showTDDetails(this.value)">
+        <option value="" disabled selected>Sélectionner un TD</option>
+        <option value="td1">TD n°1 - Introduction aux systèmes</option>
+        <option value="td2">TD n°2 - Gestion des processus</option>
+        <option value="td3">TD n°3 - Gestion de la mémoire</option>
+        <option value="td4">TD n°4 - Systèmes de fichiers</option>
+        <option value="td5">TD n°5 - Réseaux de base</option>
+        <option value="td6">TD n°6 - Sécurité informatique</option>
+        <option value="td7">TD n°7 - Scripts shell</option>
+        <option value="td8">TD n°8 - Virtualisation</option>
+      </select>
+    </div>
+    <div id="td-details" class="td-details">
+      <div id="td1" class="td-content">
+        <h3>TD n°1 - Introduction aux systèmes</h3>
+        <p>Exploration des bases des systèmes d'exploitation : architecture, commandes Linux de base.</p>
+        <p><a href="#">Voir le code</a> | <a href="#">Télécharger le PDF</a></p>
+      </div>
+      <div id="td2" class="td-content">
+        <h3>TD n°2 - Gestion des processus</h3>
+        <p>Étude des processus Linux, utilisation de `ps`, `top`, et création de scripts pour gérer les processus.</p>
+        <p><a href="#">Voir le code</a> | <a href="#">Télécharger le PDF</a></p>
+      </div>
+      <div id="td3" class="td-content">
+        <h3>TD n°3 - Gestion de la mémoire</h3>
+        <p>Analyse de la gestion de la mémoire dans les systèmes d'exploitation, avec des exemples pratiques.</p>
+        <p><a href="#">Voir le code</a> | <a href="#">Télécharger le PDF</a></p>
+      </div>
+      <div id="td4" class="td-content">
+        <h3>TD n°4 - Systèmes de fichiers</h3>
+        <p>Étude des systèmes de fichiers (ext4, NTFS) et manipulation via des commandes Linux.</p>
+        <p><a href="#">Voir le code</a> | <a href="#">Télécharger le PDF</a></p>
+      </div>
+      <div id="td5" class="td-content">
+        <h3>TD n°5 - Réseaux de base</h3>
+        <p>Configuration réseau, utilisation de `ping`, `netstat`, et analyse de paquets.</p>
+        <p><a href="#">Voir le code</a> | <a href="#">Télécharger le PDF</a></p>
+      </div>
+      <div id="td6" class="td-content">
+        <h3>TD n°6 - Sécurité informatique</h3>
+        <p>Introduction aux concepts de sécurité : pare-feu, permissions, et bonnes pratiques.</p>
+        <p><a href="#">Voir le code</a> | <a href="#">Télécharger le PDF</a></p>
+      </div>
+      <div id="td7" class="td-content">
+        <h3>TD n°7 - Scripts shell</h3>
+        <p>Création de scripts shell pour automatiser des tâches dans un environnement Linux.</p>
+        <p><a href="#">Voir le code</a> | <a href="#">Télécharger le PDF</a></p>
+      </div>
+      <div id="td8" class="td-content">
+        <h3>TD n°8 - Virtualisation</h3>
+        <p>Utilisation de VirtualBox pour créer et gérer des machines virtuelles.</p>
+        <p><a href="#">Voir le code</a> | <a href="#">Télécharger le PDF</a></p>
+      </div>
+    </div>
     <div class="projects-grid">
       <div class="card">
         <h3>Portfolio</h3>
@@ -147,6 +253,10 @@
         <p>Python</p>
         <div class="bar"><span style="width: 80%"></span></div>
       </div>
+      <div class="skill">
+        <p>Linux / Shell</p>
+        <div class="bar"><span style="width: 70%"></span></div>
+      </div>
     </div>
   </section>
 
@@ -162,10 +272,22 @@
     <p>© 2025 - Portfolio Daniel Badoyan</p>
   </footer>
 
-  <!-- Script menu burger -->
+  <!-- Script menu burger et TD -->
   <script>
     function toggleMenu() {
       document.querySelector('.nav-links').classList.toggle('nav-active');
+    }
+
+    function showTDDetails(td) {
+      const detailsContainer = document.getElementById('td-details');
+      const allTDs = document.querySelectorAll('.td-content');
+      allTDs.forEach(tdContent => tdContent.style.display = 'none');
+      if (td) {
+        document.getElementById(td).style.display = 'block';
+        detailsContainer.classList.add('active');
+      } else {
+        detailsContainer.classList.remove('active');
+      }
     }
   </script>
 
