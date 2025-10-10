@@ -1,116 +1,141 @@
-/* Style général de la page */
+/* --- VARIABLES DE COULEURS ET POLICE D'ÉCRITURE --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+    --primary-color: #007bff; /* Un bleu moderne */
+    --primary-hover: #0056b3;
+    --background-color: #f8f9fa;
+    --text-color: #343a40;
+    --header-bg: #ffffff;
+    --border-color: #dee2e6;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* --- STYLE GÉNÉRAL --- */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
 }
 
+/* --- EN-TÊTE --- */
 header {
-    background-color: #2c3e50;
-    color: white;
-    padding: 1rem;
+    background-color: var(--header-bg);
+    color: var(--text-color);
     text-align: center;
+    padding: 2rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px var(--shadow-color);
 }
 
-/* Style de la barre de navigation */
+header h1 {
+    margin: 0;
+    font-weight: 600;
+}
+
+header p {
+    margin: 0.25rem 0 0;
+    font-weight: 300;
+    color: #6c757d;
+}
+
+/* --- NAVIGATION ET MENU DÉROULANT --- */
 nav {
     display: flex;
     justify-content: center;
-    background-color: #34495e;
-    padding: 0.5rem;
+    padding: 1rem;
+    background-color: #e9ecef;
 }
 
-/* Style du bouton du menu déroulant */
+.dropdown {
+    position: relative;
+}
+
 .dropbtn {
-    background-color: #3498db;
+    background-color: var(--primary-color);
     color: white;
-    padding: 12px 20px;
+    padding: 12px 30px;
     font-size: 16px;
+    font-family: 'Poppins', sans-serif;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 50px; /* Bouton arrondi */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
 }
 
 .dropbtn:hover {
-    background-color: #2980b9;
+    background-color: var(--primary-hover);
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
 }
 
-/* Conteneur du menu (nécessaire pour le positionnement) */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-/* Contenu du menu (caché par défaut) */
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
-    min-width: 200px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    background-color: var(--header-bg);
+    min-width: 220px;
+    box-shadow: 0 8px 16px var(--shadow-color);
+    border-radius: 8px;
     z-index: 1;
-    border-radius: 5px;
+    overflow: hidden; /* Pour que les coins arrondis s'appliquent aux enfants */
+    margin-top: 10px;
 }
 
-/* Liens à l'intérieur du menu */
 .dropdown-content a {
-    color: black;
+    color: var(--text-color);
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    transition: background-color 0.2s ease;
 }
 
 .dropdown-content a:hover {
     background-color: #f1f1f1;
 }
 
-/* Classe pour afficher le menu (ajoutée par le JavaScript) */
 .show {
     display: block;
 }
 
-/* --- STYLES POUR LES SOUS-MENUS --- */
-
+/* --- SOUS-MENUS ET BOUTONS PDF --- */
 #submenu-container {
-    text-align: center;
-    padding: 10px;
-    background-color: #ecf0f1;
+    padding: 1rem;
+    min-height: 60px; /* Garde un espace même si vide */
 }
 
-/* Le sous-menu est caché par défaut */
 .submenu {
     display: none;
-    padding: 10px;
-    border-top: 2px solid #bdc3c7;
-}
-
-/* Style pour afficher le sous-menu actif */
-.submenu.active-submenu {
-    display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 10px; /* Espace entre les boutons */
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 10px 0;
 }
 
-/* Style des boutons de sélection de PDF */
+.submenu.active-submenu {
+    display: flex; /* Utilise flex pour un meilleur alignement */
+}
+
 .pdf-button {
-    background-color: #16a085;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
+    background-color: transparent;
+    color: var(--primary-color);
+    padding: 8px 16px;
+    border: 1px solid var(--primary-color);
+    border-radius: 20px;
     cursor: pointer;
     font-size: 14px;
-    transition: background-color 0.2s;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
 }
 
 .pdf-button:hover {
-    background-color: #1abc9c;
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-2px); /* Effet de soulèvement */
 }
 
-
-/* Style du conteneur pour le PDF */
+/* --- CONTENEUR DU PDF --- */
 main {
     padding: 20px;
     display: flex;
@@ -120,16 +145,24 @@ main {
 #pdf-viewer-container {
     width: 90%;
     max-width: 900px;
-    height: 75vh; /* 75% de la hauteur de la fenêtre */
-    border: 1px solid #ccc;
-    background-color: white;
+    height: 80vh;
+    border: 1px solid var(--border-color);
+    background-color: var(--header-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px var(--shadow-color);
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden; /* Empêche l'iframe de déborder */
+}
+
+#pdf-viewer-container p {
+    color: #6c757d;
+    font-size: 1.2rem;
 }
 
 #pdf-viewer {
     width: 100%;
     height: 100%;
-    display: none; /* Caché par défaut, montré par JS */
+    display: none;
 }
