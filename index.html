@@ -1,339 +1,335 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio - Daniel Badoyan</title>
-  <style>
-    /* Reset */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: "Segoe UI", sans-serif; color: #222; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portfolio</title>
 
-    /* Navbar */
-    .navbar {
-      position: sticky; top: 0;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 15px 40px; background: #111; color: #fff;
-      z-index: 100;
-    }
-    .navbar .logo { font-size: 1.4rem; font-weight: bold; }
-    .nav-links { list-style: none; display: flex; }
-    .nav-links li { margin-left: 20px; }
-    .nav-links a {
-      text-decoration: none; color: #fff; transition: 0.3s;
-    }
-    .nav-links a:hover { color: #00adb5; }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-    /* Hero */
-    .hero {
-      height: 100vh;
-      background: linear-gradient(to right, #222, #111);
-      color: #fff; display: flex; justify-content: center; align-items: center;
-      text-align: center; padding: 0 20px;
-    }
-    .hero h1 { font-size: 2.5rem; margin-bottom: 15px; }
-    .hero h1 span { color: #00adb5; }
-    .hero p { font-size: 1.2rem; margin-bottom: 20px; }
-    .btn {
-      display: inline-block; padding: 12px 25px;
-      background: #00adb5; color: #fff; text-decoration: none;
-      border-radius: 30px; transition: 0.3s;
-    }
-    .btn:hover { background: #007a82; }
+    <style>
+        /* ====================
+           1. VARIABLES & STYLES GLOBAUX
+           ==================== */
+        :root {
+            --bg-color: #1f242d;
+            --second-bg-color: #323946;
+            --text-color: #ffffff;
+            --main-color: #0ef; /* Cyan vif pour l'accentuation */
+        }
 
-    /* Sections */
-    .section { padding: 80px 10%; text-align: center; }
-    .section h2 { font-size: 2rem; margin-bottom: 40px; }
-    .dark { background: #f8f8f8; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
 
-    /* Projects */
-    .projects-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-    .card {
-      background: #fff; padding: 20px; border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
-    }
-    .card:hover { transform: translateY(-8px); }
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
 
-    /* Dropdown Menu */
-    .dropdown {
-      margin-bottom: 30px;
-    }
-    .dropdown select {
-      padding: 12px 20px;
-      font-size: 1rem;
-      border: 2px solid #00adb5;
-      border-radius: 30px;
-      background: #fff;
-      color: #222;
-      cursor: pointer;
-      transition: 0.3s;
-      width: 200px;
-      outline: none;
-    }
-    .dropdown select:hover {
-      background: #00adb5;
-      color: #fff;
-    }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        h1 span, h2 span {
+            color: var(--main-color);
+        }
 
-    /* TD Details */
-    .td-details {
-      margin-top: 20px;
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      display: none;
-      text-align: left;
-      display: flex;
-      gap: 20px;
-    }
-    .td-details.active {
-      display: flex;
-    }
-    .td-content {
-      flex: 1;
-    }
-    .td-content h3 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-    }
-    .td-content p {
-      font-size: 1rem;
-      margin-bottom: 10px;
-    }
-    .td-content a {
-      color: #00adb5;
-      text-decoration: none;
-      margin-right: 10px;
-    }
-    .td-content a:hover {
-      text-decoration: underline;
-    }
-    .td-pdf-viewer {
-      flex: 2;
-      height: 500px;
-    }
-    .td-pdf-viewer iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      border-radius: 8px;
-    }
+        /* ====================
+           2. HEADER & NAVIGATION
+           ==================== */
+        .header {
+            background: var(--second-bg-color);
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
 
-    /* Skills */
-    .skills { max-width: 600px; margin: auto; }
-    .skill { margin-bottom: 20px; text-align: left; }
-    .bar {
-      background: #ddd; border-radius: 20px; overflow: hidden;
-    }
-    .bar span {
-      display: block; height: 12px; background: #00adb5;
-    }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+        .logo span {
+            color: var(--main-color);
+        }
+        
+        .navbar a {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            text-decoration: none;
+            margin-left: 2rem;
+            transition: color 0.3s;
+        }
+        
+        .navbar a:hover, .navbar a.active {
+            color: var(--main-color);
+        }
 
-    /* Footer */
-    footer {
-      background: #111; color: #fff;
-      text-align: center; padding: 20px; margin-top: 40px;
-    }
+        /* ====================
+           3. SECTION PORTFOLIO / TRAVAUX
+           ==================== */
+        .portfolio {
+            padding: 80px 0;
+        }
+        
+        .portfolio h2 {
+            font-size: 3rem;
+            margin-bottom: 4rem;
+        }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .nav-links { flex-direction: column; display: none; background: #111; width: 100%; text-align: center; }
-      .nav-links li { margin: 15px 0; }
-      .nav-active { display: flex; }
-      .burger { display: block; cursor: pointer; }
-      .dropdown select { width: 100%; }
-      .td-details { flex-direction: column; }
-      .td-pdf-viewer { height: 300px; }
-    }
-    .burger { display: none; flex-direction: column; cursor: pointer; }
-    .burger div {
-      width: 25px; height: 3px; background: white; margin: 4px; transition: 0.3s;
-    }
-  </style>
+        /* Boutons de filtre */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            background: var(--second-bg-color);
+            color: var(--text-color);
+            border: 2px solid transparent;
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            background: var(--main-color);
+            color: var(--bg-color);
+        }
+
+        .filter-btn.active {
+            background: var(--main-color);
+            color: var(--bg-color);
+            border: 2px solid var(--main-color);
+            box-shadow: 0 0 15px var(--main-color);
+        }
+
+        /* Grille des projets */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background: var(--second-bg-color);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: block; /* S'assurer que la carte s'affiche bien */
+        }
+
+        .project-card.hide {
+            display: none; /* Classe pour cacher les éléments filtrés */
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 25px var(--main-color);
+        }
+        
+        .project-image {
+            position: relative;
+            overflow: hidden;
+            height: 220px;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+        
+        .project-info {
+            padding: 1.5rem;
+        }
+        
+        .project-info h3 {
+            font-size: 1.5rem;
+            color: var(--main-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-info p {
+            font-size: 1rem;
+            color: #ccc;
+        }
+
+        /* ====================
+           4. FOOTER
+           ==================== */
+        .footer {
+            background: var(--second-bg-color);
+            padding: 2rem 5%;
+            text-align: center;
+            margin-top: 5rem;
+        }
+        
+        .footer p {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+    </style>
 </head>
 <body>
 
-  <!-- ====== NAVBAR ====== -->
-  <nav class="navbar">
-    <div class="logo">Portfolio</div>
-    <ul class="nav-links">
-      <li><a href="#accueil">Accueil</a></li>
-      <li><a href="#projets">Projets</a></li>
-      <li><a href="#competences">Compétences</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div class="burger" onclick="toggleMenu()">
-      <div></div><div></div><div></div>
-    </div>
-  </nav>
+    <header class="header">
+        <a href="#" class="logo">MonPortfolio<span>.</span></a>
+        <nav class="navbar">
+            <a href="#">Accueil</a>
+            <a href="#travaux" class="active">Travaux</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
 
-  <!-- ====== ACCUEIL ====== -->
-  <section id="accueil" class="hero">
-    <div class="hero-content">
-      <h1>Salut, moi c’est <span>Daniel Badoyan</span></h1>
-      <p>Étudiant en informatique — passionné de développement web et logiciel</p>
-      <a href="#projets" class="btn">Voir mes projets</a>
-    </div>
-  </section>
+    <main>
+        <section id="travaux" class="portfolio container">
+            <h2>Mes <span>Travaux</span></h2>
 
-  <!-- ====== PROJETS ====== -->
-  <section id="projets" class="section">
-    <h2>🚀 Mes Projets</h2>
-    <div class="dropdown">
-      <select name="td-selection" id="td-selection" onchange="showTDDetails(this.value)">
-        <option value="" disabled selected>Sélectionner un TD</option>
-        <option value="td1">TD n°1 - Introduction aux systèmes</option>
-        <option value="td2">TD n°2 - Gestion des processus</option>
-        <option value="td3">TD n°3 - Gestion de la mémoire</option>
-        <option value="td4">TD n°4 - Systèmes de fichiers</option>
-        <option value="td5">TD n°5 - Réseaux de base</option>
-        <option value="td6">TD n°6 - Sécurité informatique</option>
-        <option value="td7">TD n°7 - Scripts shell</option>
-        <option value="td8">TD n°8 - Virtualisation</option>
-      </select>
-    </div>
-    <div id="td-details" class="td-details">
-      <div class="td-content">
-        <div id="td1" class="td-content-inner">
-          <h3>TD n°1 - Introduction aux systèmes</h3>
-          <p>Exploration des bases des systèmes d'exploitation : architecture, commandes Linux de base.</p>
-          <p><a href="#">Voir le code</a> | <a href="pdfs/td1.pdf" download>Télécharger le PDF</a></p>
-        </div>
-        <div id="td2" class="td-content-inner">
-          <h3>TD n°2 - Gestion des processus</h3>
-          <p>Étude des processus Linux, utilisation de `ps`, `top`, et création de scripts pour gérer les processus.</p>
-          <p><a href="#">Voir le code</a> | <a href="pdfs/td2.pdf" download>Télécharger le PDF</a></p>
-        </div>
-        <div id="td3" class="td-content-inner">
-          <h3>TD n°3 - Gestion de la mémoire</h3>
-          <p>Analyse de la gestion de la mémoire dans les systèmes d'exploitation, avec des exemples pratiques.</p>
-          <p><a href="#">Voir le code</a> | <a href="pdfs/td3.pdf" download>Télécharger le PDF</a></p>
-        </div>
-        <div id="td4" class="td-content-inner">
-          <h3>TD n°4 - Systèmes de fichiers</h3>
-          <p>Étude des systèmes de fichiers (ext4, NTFS) et manipulation via des commandes Linux.</p>
-          <p><a href="#">Voir le code</a> | <a href="pdfs/td4.pdf" download>Télécharger le PDF</a></p>
-        </div>
-        <div id="td5" class="td-content-inner">
-          <h3>TD n°5 - Réseaux de base</h3>
-          <p>Configuration réseau, utilisation de `ping`, `netstat`, et analyse de paquets.</p>
-          <p><a href="#">Voir le code</a> | <a href="pdfs/td5.pdf" download>Télécharger le PDF</a></p>
-        </div>
-        <div id="td6" class="td-content-inner">
-          <h3>TD n°6 - Sécurité informatique</h3>
-          <p>Introduction aux concepts de sécurité : pare-feu, permissions, et bonnes pratiques.</p>
-          <p><a href="#">Voir le code</a> | <a href="pdfs/td6.pdf" download>Télécharger le PDF</a></p>
-        </div>
-        <div id="td7" class="td-content-inner">
-          <h3>TD n°7 - Scripts shell</h3>
-          <p>Création de scripts shell pour automatiser des tâches dans un environnement Linux.</p>
-          <p><a href="#">Voir le code</a> | <a href="pdfs/td7.pdf" download>Télécharger le PDF</a></p>
-        </div>
-        <div id="td8" class="td-content-inner">
-          <h3>TD n°8 - Virtualisation</h3>
-          <p>Utilisation de VirtualBox pour créer et gérer des machines virtuelles.</p>
-          <p><a href="#">Voir le code</a> | <a href="pdfs/td8.pdf" download>Télécharger le PDF</a></p>
-        </div>
-      </div>
-      <div class="td-pdf-viewer">
-        <iframe id="pdf-viewer" src=""></iframe>
-      </div>
-    </div>
-    <div class="projects-grid">
-      <div class="card">
-        <h3>Portfolio</h3>
-        <p>Site personnel avec GitHub Pages.</p>
-      </div>
-      <div class="card">
-        <h3>Application Web</h3>
-        <p>Projet en JavaScript avec API externe.</p>
-      </div>
-      <div class="card">
-        <h3>Jeu Python</h3>
-        <p>Petit jeu en Pygame pour expérimenter.</p>
-      </div>
-    </div>
-  </section>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="tous">Tous</button>
+                <button class="filter-btn" data-filter="web">Développement Web</button>
+                <button class="filter-btn" data-filter="design">Design UI/UX</button>
+                <button class="filter-btn" data-filter="app">Application Mobile</button>
+            </div>
 
-  <!-- ====== COMPETENCES ====== -->
-  <section id="competences" class="section dark">
-    <h2>💻 Compétences</h2>
-    <div class="skills">
-      <div class="skill">
-        <p>HTML / CSS</p>
-        <div class="bar"><span style="width: 90%"></span></div>
-      </div>
-      <div class="skill">
-        <p>JavaScript</p>
-        <div class="bar"><span style="width: 75%"></span></div>
-      </div>
-      <div class="skill">
-        <p>Python</p>
-        <div class="bar"><span style="width: 80%"></span></div>
-      </div>
-      <div class="skill">
-        <p>Linux / Shell</p>
-        <div class="bar"><span style="width: 70%"></span></div>
-      </div>
-    </div>
-  </section>
+            <div class="project-grid">
 
-  <!-- ====== CONTACT ====== -->
-  <section id="contact" class="section">
-    <h2>📩 Contact</h2>
-    <p>Envie de collaborer ? Écris-moi :</p>
-    <a href="mailto:daniel.badoyan@example.com" class="btn">Me contacter</a>
-  </section>
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <img src="https://picsum.photos/400/300?random=1" alt="Image du projet 1">
+                    </div>
+                    <div class="project-info">
+                        <h3>Site E-commerce</h3>
+                        <p>Plateforme de vente en ligne responsive avec React.</p>
+                    </div>
+                </div>
 
-  <!-- ====== FOOTER ====== -->
-  <footer>
-    <p>© 2025 - Portfolio Daniel Badoyan</p>
-  </footer>
+                <div class="project-card" data-category="design">
+                    <div class="project-image">
+                        <img src="https://picsum.photos/400/300?random=2" alt="Image du projet 2">
+                    </div>
+                    <div class="project-info">
+                        <h3>Maquette d'Application</h3>
+                        <p>Conception d'interface pour une app de fitness sur Figma.</p>
+                    </div>
+                </div>
 
-  <!-- Script menu burger et TD -->
-  <script>
-    function toggleMenu() {
-      document.querySelector('.nav-links').classList.toggle('nav-active');
-    }
+                <div class="project-card" data-category="app">
+                    <div class="project-image">
+                        <img src="https://picsum.photos/400/300?random=3" alt="Image du projet 3">
+                    </div>
+                    <div class="project-info">
+                        <h3>App de Météo</h3>
+                        <p>Application mobile développée en Flutter.</p>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <img src="https://picsum.photos/400/300?random=4" alt="Image du projet 4">
+                    </div>
+                    <div class="project-info">
+                        <h3>Portfolio Personnel</h3>
+                        <p>Site de présentation créé avec HTML, CSS et JavaScript.</p>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="design">
+                    <div class="project-image">
+                        <img src="https://picsum.photos/400/300?random=5" alt="Image du projet 5">
+                    </div>
+                    <div class="project-info">
+                        <h3>Refonte d'un Logo</h3>
+                        <p>Création d'une nouvelle identité visuelle pour une startup.</p>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <img src="https://picsum.photos/400/300?random=6" alt="Image du projet 6">
+                    </div>
+                    <div class="project-info">
+                        <h3>Blog de Voyage</h3>
+                        <p>Développement d'un blog dynamique avec un CMS.</p>
+                    </div>
+                </div>
 
-    function showTDDetails(td) {
-      const detailsContainer = document.getElementById('td-details');
-      const allTDs = document.querySelectorAll('.td-content-inner');
-      const pdfViewer = document.getElementById('pdf-viewer');
-      
-      // Masquer tous les contenus des TD
-      allTDs.forEach(tdContent => tdContent.style.display = 'none');
-      
-      // Réinitialiser l'iframe
-      pdfViewer.src = '';
+            </div>
+        </section>
+    </main>
 
-      if (td) {
-        // Afficher le contenu du TD sélectionné
-        document.getElementById(td).style.display = 'block';
-        detailsContainer.classList.add('active');
+    <footer class="footer">
+        <p>&copy; 2025 Votre Nom. Tous droits réservés.</p>
+    </footer>
 
-        // Charger le PDF correspondant dans l'iframe
-        const pdfPaths = {
-          td1: 'pdfs/td1.pdf',
-          td2: 'pdfs/td2.pdf',
-          td3: 'pdfs/td3.pdf',
-          td4: 'pdfs/td4.pdf',
-          td5: 'pdfs/td5.pdf',
-          td6: 'pdfs/td6.pdf',
-          td7: 'pdfs/td7.pdf',
-          td8: 'pdfs/td8.pdf'
-        };
-        pdfViewer.src = pdfPaths[td] || '';
-      } else {
-        detailsContainer.classList.remove('active');
-      }
-    }
-  </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sélectionner tous les boutons de filtre et toutes les cartes de projet
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            // Ajouter un écouteur d'événement à chaque bouton
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Retirer la classe 'active' de tous les boutons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Ajouter la classe 'active' au bouton cliqué
+                    button.classList.add('active');
+
+                    // Récupérer la valeur du filtre depuis l'attribut 'data-filter'
+                    const filter = button.dataset.filter;
+
+                    // Parcourir toutes les cartes de projet
+                    projectCards.forEach(card => {
+                        // Récupérer la catégorie de la carte depuis 'data-category'
+                        const category = card.dataset.category;
+
+                        // Vérifier si la carte doit être affichée ou cachée
+                        if (filter === 'tous' || filter === category) {
+                            card.classList.remove('hide'); // Afficher la carte
+                        } else {
+                            card.classList.add('hide'); // Cacher la carte
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>
