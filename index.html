@@ -16,59 +16,87 @@
         <div class="dropdown">
             <button id="menu-button" class="dropbtn">Choisir un TD ▼</button>
             <div id="myDropdown" class="dropdown-content">
-                <a href="#" data-src="pdfs/td1.pdf">TD 1 - Titre du TD</a>
-                <a href="#" data-src="pdfs/td2.pdf">TD 2 - Titre du TD</a>
-                <a href="#" data-src="pdfs/td3.pdf">TD 3 - Titre du TD</a>
-                <a href="#" data-src="pdfs/td4.pdf">TD 4 - Titre du TD</a>
-                <a href="#" data-src="pdfs/td5.pdf">TD 5 - Titre du TD</a>
-                <a href="#" data-src="pdfs/td6.pdf">TD 6 - Titre du TD</a>
-                <a href="#" data-src="pdfs/td7.pdf">TD 7 - Titre du TD</a>
+                <a href="#" data-td="td1">TD 1 - Introduction</a>
+                <a href="#" data-td="td2">TD 2 - Modélisation</a>
+                <a href="#" data-td="td3">TD 3 - Bases de Données</a>
+                <a href="#" data-td="td4">TD 4 - ...</a>
+                <a href="#" data-td="td5">TD 5 - ...</a>
+                <a href="#" data-td="td6">TD 6 - ...</a>
+                <a href="#" data-td="td7">TD 7 - ...</a>
             </div>
         </div>
     </nav>
 
+    <div id="submenu-container">
+        <div id="td1-files" class="submenu">
+            <button class="pdf-button" data-src="pdfs/td1/cours.pdf">Voir le Cours</button>
+            <button class="pdf-button" data-src="pdfs/td1/exercice.pdf">Voir l'Exercice</button>
+        </div>
+
+        <div id="td2-files" class="submenu">
+            <button class="pdf-button" data-src="pdfs/td2/sujet.pdf">Sujet du TD</button>
+            <button class="pdf-button" data-src="pdfs/td2/correction.pdf">Correction</button>
+            <button class="pdf-button" data-src="pdfs/td2/annexe.pdf">Annexe</button>
+        </div>
+
+        <div id="td3-files" class="submenu">
+             </div>
+    </div>
+
+
     <main>
         <div id="pdf-viewer-container">
-            <p>Veuillez sélectionner un TD dans le menu pour afficher le document.</p>
+            <p>Veuillez sélectionner un TD puis un document à afficher.</p>
             <iframe id="pdf-viewer" src="" frameborder="0"></iframe>
         </div>
     </main>
 
     <script>
-        // --- Code JavaScript pour la magie ---
-
-        // 1. Gérer l'ouverture/fermeture du menu déroulant
-        document.getElementById('menu-button').onclick = function() {
-            document.getElementById('myDropdown').classList.toggle('show');
+        // --- GESTION DU MENU PRINCIPAL ---
+        const menuButton = document.getElementById('menu-button');
+        const dropdown = document.getElementById('myDropdown');
+        
+        menuButton.onclick = function() {
+            dropdown.classList.toggle('show');
         };
 
-        // Fermer le menu si on clique n'importe où ailleurs sur la page
         window.onclick = function(event) {
             if (!event.target.matches('.dropbtn')) {
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
+                if (dropdown.classList.contains('show')) {
+                    dropdown.classList.remove('show');
                 }
             }
         };
 
-        // 2. Gérer l'affichage des PDFs
-        const pdfLinks = document.querySelectorAll('.dropdown-content a');
+        // --- GESTION DE L'AFFICHAGE DES SOUS-MENUS ---
+        const tdLinks = document.querySelectorAll('.dropdown-content a');
+        const submenus = document.querySelectorAll('.submenu');
+
+        tdLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const tdId = this.getAttribute('data-td');
+                const targetSubmenu = document.getElementById(tdId + '-files');
+
+                submenus.forEach(menu => menu.classList.remove('active-submenu'));
+
+                if (targetSubmenu) {
+                    targetSubmenu.classList.add('active-submenu');
+                }
+                
+                dropdown.classList.remove('show');
+            });
+        });
+
+        // --- GESTION DE L'AFFICHAGE DU PDF ---
+        const pdfButtons = document.querySelectorAll('.pdf-button');
         const pdfViewer = document.getElementById('pdf-viewer');
         const defaultText = document.querySelector('#pdf-viewer-container p');
 
-        pdfLinks.forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault(); // Empêche le lien de remonter en haut de la page
-                const pdfSrc = this.getAttribute('data-src'); // On récupère le chemin du PDF
-                
-                // On affiche le PDF dans l'iframe
+        pdfButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const pdfSrc = this.getAttribute('data-src');
                 pdfViewer.src = pdfSrc;
-                
-                // On cache le message par défaut et on montre le conteneur du PDF
                 defaultText.style.display = 'none';
                 pdfViewer.style.display = 'block';
             });
