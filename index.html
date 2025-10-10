@@ -4,17 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Portfolio - Systèmes d'Information</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
         <h1>Portfolio - Systèmes d'Information</h1>
+        <p>Mon nom - Année Universitaire 2025-2026</p>
     </header>
 
     <nav>
         <div class="dropdown">
-            <button id="menu-button" class="dropbtn">Choisir un TD ▼</button>
+            <button id="menu-button" class="dropbtn">Choisir un TD</button>
             <div id="myDropdown" class="dropdown-content">
                 <a href="#" data-td="td1">TD 1 - Introduction</a>
                 <a href="#" data-td="td2">TD 2 - Modélisation</a>
@@ -46,13 +50,12 @@
 
     <main>
         <div id="pdf-viewer-container">
-            <p>Veuillez sélectionner un TD puis un document à afficher.</p>
+            <p id="default-text">Sélectionnez un TD puis un document pour commencer.</p>
             <iframe id="pdf-viewer" src="" frameborder="0"></iframe>
         </div>
     </main>
 
     <script>
-        // --- GESTION DU MENU PRINCIPAL ---
         const menuButton = document.getElementById('menu-button');
         const dropdown = document.getElementById('myDropdown');
         
@@ -68,7 +71,6 @@
             }
         };
 
-        // --- GESTION DE L'AFFICHAGE DES SOUS-MENUS ---
         const tdLinks = document.querySelectorAll('.dropdown-content a');
         const submenus = document.querySelectorAll('.submenu');
 
@@ -78,9 +80,10 @@
                 const tdId = this.getAttribute('data-td');
                 const targetSubmenu = document.getElementById(tdId + '-files');
 
+                // Si on clique sur le TD déjà actif, on le cache. Sinon, on l'affiche.
+                const isAlreadyActive = targetSubmenu && targetSubmenu.classList.contains('active-submenu');
                 submenus.forEach(menu => menu.classList.remove('active-submenu'));
-
-                if (targetSubmenu) {
+                if (!isAlreadyActive && targetSubmenu) {
                     targetSubmenu.classList.add('active-submenu');
                 }
                 
@@ -88,10 +91,9 @@
             });
         });
 
-        // --- GESTION DE L'AFFICHAGE DU PDF ---
         const pdfButtons = document.querySelectorAll('.pdf-button');
         const pdfViewer = document.getElementById('pdf-viewer');
-        const defaultText = document.querySelector('#pdf-viewer-container p');
+        const defaultText = document.getElementById('default-text');
 
         pdfButtons.forEach(button => {
             button.addEventListener('click', function() {
