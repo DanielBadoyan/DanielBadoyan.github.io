@@ -1,68 +1,95 @@
-/* Reset */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: "Segoe UI", sans-serif; color: #222; }
-
-/* Navbar */
-.navbar {
-  position: sticky; top: 0;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 15px 40px; background: #111; color: #fff;
-  z-index: 100;
-}
-.navbar .logo { font-size: 1.4rem; font-weight: bold; }
-.nav-links { list-style: none; display: flex; }
-.nav-links li { margin-left: 20px; }
-.nav-links a {
-  text-decoration: none; color: #fff; transition: 0.3s;
-}
-.nav-links a:hover { color: #00adb5; }
-
-/* Hero */
-.hero {
-  height: 100vh;
-  background: linear-gradient(to right, #222, #111);
-  color: #fff; display: flex; justify-content: center; align-items: center;
-  text-align: center; padding: 0 20px;
-}
-.hero h1 { font-size: 2.5rem; margin-bottom: 15px; }
-.hero h1 span { color: #00adb5; }
-.hero p { font-size: 1.2rem; margin-bottom: 20px; }
-.btn {
-  display: inline-block; padding: 12px 25px;
-  background: #00adb5; color: #fff; text-decoration: none;
-  border-radius: 30px; transition: 0.3s;
-}
-.btn:hover { background: #007a82; }
-
-/* Sections */
-.section { padding: 80px 10%; text-align: center; }
-.section h2 { font-size: 2rem; margin-bottom: 40px; }
-.dark { background: #f8f8f8; }
-
-/* Projects */
-.projects-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
-.card {
-  background: #fff; padding: 20px; border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
-}
-.card:hover { transform: translateY(-8px); }
-
-/* Skills */
-.skills { max-width: 600px; margin: auto; }
-.skill { margin-bottom: 20px; text-align: left; }
-.bar {
-  background: #ddd; border-radius: 20px; overflow: hidden;
-}
-.bar span {
-  display: block; height: 12px; background: #00adb5;
+/* Style général de la page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f4f4f4;
+    color: #333;
 }
 
-/* Footer */
-footer {
-  background: #111; color: #fff;
-  text-align: center; padding: 20px; margin-top: 40px;
+header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+/* Style de la barre de navigation */
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #34495e;
+    padding: 0.5rem;
+}
+
+/* Style du bouton du menu déroulant */
+.dropbtn {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.dropbtn:hover {
+    background-color: #2980b9;
+}
+
+/* Conteneur du menu (nécessaire pour le positionnement) */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Contenu du menu (caché par défaut) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+}
+
+/* Liens à l'intérieur du menu */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Classe pour afficher le menu (ajoutée par le JavaScript) */
+.show {
+    display: block;
+}
+
+/* Style du conteneur pour le PDF */
+main {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+#pdf-viewer-container {
+    width: 90%;
+    max-width: 900px;
+    height: 75vh; /* 75% de la hauteur de la fenêtre */
+    border: 1px solid #ccc;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#pdf-viewer {
+    width: 100%;
+    height: 100%;
+    display: none; /* Caché par défaut, montré par JS */
 }
