@@ -216,24 +216,25 @@ nav {
 }
 
 /* --- ZONE PRINCIPALE (VIEWER) --- */
+/* --- ZONE PRINCIPALE (VIEWER) --- */
 main {
     flex: 1;
-    padding: 0 20px 40px 20px;
+    padding: 10px; /* Marges réduites au minimum */
+    width: 100%;
     display: flex;
     justify-content: center;
 }
 
-/* --- ZONE PRINCIPALE (VIEWER) --- */
 #pdf-viewer-container {
-    width: 98%;            /* Occupe 98% de la largeur de la page */
-    max-width: 1600px;     /* Limite maximale augmentée (avant 1100px) */
-    height: 85vh;          /* Hauteur : 85% de ton écran (avant 75vh) */
+    width: 100%;           /* Prend 100% de la largeur de l'écran */
+    max-width: none;       /* AUCUNE limite de largeur */
+    height: 90vh;          /* Prend 90% de la hauteur de l'écran */
     background: var(--white);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-soft);
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow: hidden;      /* Important pour garder les coins arrondis */
     position: relative;
     border: 1px solid rgba(255,255,255,0.8);
 }
