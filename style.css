@@ -223,10 +223,11 @@ main {
     justify-content: center;
 }
 
+/* --- ZONE PRINCIPALE (VIEWER) --- */
 #pdf-viewer-container {
-    width: 100%;
-    max-width: 1100px;
-    height: 75vh;
+    width: 98%;            /* Occupe 98% de la largeur de la page */
+    max-width: 1600px;     /* Limite maximale augmentée (avant 1100px) */
+    height: 85vh;          /* Hauteur : 85% de ton écran (avant 75vh) */
     background: var(--white);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-soft);
@@ -234,7 +235,7 @@ main {
     flex-direction: column;
     overflow: hidden;
     position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255,255,255,0.8);
 }
 
 /* Fausse barre de fenêtre Mac/Browser pour le style */
