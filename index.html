@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEXUS | Portfolio SI</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,7 +14,9 @@
     <div class="cursor cursor-small"></div>
     <div class="cursor cursor-large"></div>
 
-    <canvas id="fluid-canvas"></canvas>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    <div class="scanlines"></div>
 
     <div class="ui-wrapper">
         <header class="hero-header">
@@ -28,7 +30,7 @@
         <nav class="nav-container">
             <div class="dropdown nexus-glass">
                 <button id="menu-button" class="dropbtn nexus-button">
-                    <span class="btn-text">INITIALISER L'EXPLORATION</span>
+                    <span class="btn-text">INITIALISER SYSTÈME</span>
                     <span class="btn-glare"></span>
                 </button>
                 <div id="myDropdown" class="dropdown-content nexus-glass-panel">
@@ -57,16 +59,31 @@
                 <button class="pdf-button nexus-file" data-src="pdfs/cours3/dossier_3.pdf">dossier_3.pdf</button>
                 <button class="pdf-button nexus-file" data-src="pdfs/cours3/schema_td_si.pdf">schema_td_si.pdf</button>
             </div>
+             <div id="cours4-files" class="submenu">
+                <button class="pdf-button nexus-file" data-src="pdfs/cours4/les_livrables_SI.pdf">les_livrables_SI.pdf</button>
+                <button class="pdf-button nexus-file" data-src="pdfs/cours4/schema_si.pdf">schema_si.pdf</button>
             </div>
+             <div id="cours5-files" class="submenu">
+                <button class="pdf-button nexus-file" data-src="pdfs/cours5/Online_Gantt.pdf">Online_Gantt.pdf</button>
+                <button class="pdf-button nexus-file" data-src="pdfs/cours5/schema_mcd.pdf">schema_mcd.pdf</button>
+            </div>
+             <div id="cours6-files" class="submenu">
+                <button class="pdf-button nexus-file" data-src="pdfs/cours6/Diagrammedeclasse.pdf">Diagrammedeclasse.pdf</button>
+                <button class="pdf-button nexus-file" data-src="pdfs/cours6/USECASE.pdf">USECASE.pdf</button>
+            </div>
+             <div id="cours7-files" class="submenu">
+                 <p style="color: var(--neon-cyan); font-family: var(--font-body);">Données cryptées...</p>
+            </div>
+        </div>
 
         <main>
             <div id="pdf-viewer-container" class="nexus-terminal">
                 <div class="terminal-header">
                     <span class="status-dot"></span>
-                    <span class="terminal-title">TERMINAL DE VISIONNAGE QUANTIQUE v4.0</span>
+                    <span class="terminal-title">VISIONNEUSE QUANTIQUE v4.1</span>
                 </div>
                 <div class="viewer-content">
-                     <p id="default-text">EN ATTENTE DE SÉLECTION DE DONNÉES...</p>
+                     <p id="default-text">EN ATTENTE DE SÉLECTION...</p>
                     <iframe id="pdf-viewer" src="" frameborder="0"></iframe>
                 </div>
             </div>
@@ -74,68 +91,20 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/PavelDoGreat/WebGL-Fluid-Simulation@master/script.js"></script>
 
     <script>
-        // --- CONFIGURATION DU FLUIDE WEBGL ---
-        // On force des couleurs spécifiques pour correspondre au nouveau thème
-        window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
-        // Configuration des couleurs du fluide (Bleu électrique, Vert émeraude, Cyan)
-        config = { 
-            IMMEDIATE: true,
-            TRIGGER: 'hover',
-            SIM_RESOLUTION: 256,
-            DYE_RESOLUTION: 1024,
-            CAPTURE_RESOLUTION: 512,
-            DENSITY_DISSIPATION: 1,
-            VELOCITY_DISSIPATION: 0.2,
-            PRESSURE: 0.8,
-            PRESSURE_ITERATIONS: 20,
-            CURL: 30,
-            SPLAT_RADIUS: 0.25,
-            SPLAT_FORCE: 6000,
-            SHADING: true,
-            COLORFUL: false, // On désactive le multicolore aléatoire
-            COLOR_UPDATE_SPEED: 10,
-            PAUSED: false,
-            BACK_COLOR: { r: 5, g: 10, b: 20 }, // Fond bleu nuit très sombre
-            TRANSPARENT: false,
-            BLOOM: true,
-            BLOOM_ITERATIONS: 8,
-            BLOOM_RESOLUTION: 256,
-            BLOOM_INTENSITY: 0.8,
-            BLOOM_THRESHOLD: 0.6,
-            BLOOM_SOFT_KNEE: 0.7,
-            SUNRAYS: true,
-            SUNRAYS_RESOLUTION: 196,
-            SUNRAYS_WEIGHT: 1.0,
-        }
-        // Injection de nos couleurs personnalisées dans le moteur fluide
-        function customColors() {
-            // Palette: Cyan Électrique, Bleu Profond, Vert Cyber
-            return [
-                {r: 0, g: 220, b: 255}, // Cyan
-                {r: 30, g: 50, b: 200}, // Deep Blue
-                {r: 0, g: 255, b: 150}  // Cyber Green
-            ][Math.floor(Math.random() * 3)];
-        }
-        // On surcharge la fonction de couleur du script externe
-        if(typeof updateKeywords === 'function') {
-             let originalGetColor = generateColor;
-             generateColor = customColors;
-        }
-
-        // --- ANIMATIONS D'ENTRÉE AVEC GSAP ---
+        // --- INITIALISATION DES ANIMATIONS (Sans risque de crash) ---
         window.addEventListener('load', () => {
             const tl = gsap.timeline();
-            tl.to('.glitch-text', { duration: 1.5, opacity: 1, letterSpacing: '5px', ease: "power4.out" })
-              .to('.subtitle-line', { duration: 1, width: '100%', ease: "expo.out" }, "-=0.8")
+            // On rend visible les éléments un par un
+            tl.to('.glitch-text', { duration: 1, opacity: 1, letterSpacing: '5px', ease: "power4.out" })
+              .to('.subtitle-line', { duration: 1, width: '100%', ease: "expo.out" }, "-=0.5")
               .to('.subtitle', { duration: 1, opacity: 1, translateY: 0, ease: "power3.out" }, "-=0.8")
-              .to('.nexus-button', { duration: 1, opacity: 1, scale: 1, ease: "elastic.out(1, 0.5)" }, "-=0.5")
-              .to('.nexus-terminal', { duration: 1.2, opacity: 1, translateY: 0, rotateX: 0, ease: "power3.out" }, "-=0.8");
+              .to('.nexus-button', { duration: 0.8, opacity: 1, scale: 1, ease: "elastic.out(1, 0.5)" }, "-=0.5")
+              .to('.nexus-terminal', { duration: 1, opacity: 1, translateY: 0, ease: "power3.out" }, "-=0.6");
         });
 
-        // --- CURSEUR PERSONNALISÉ ---
+        // --- CURSEUR ---
         const cursorSmall = document.querySelector('.cursor-small');
         const cursorLarge = document.querySelector('.cursor-large');
         
@@ -144,20 +113,17 @@
             gsap.to(cursorLarge, { x: e.clientX, y: e.clientY, duration: 0.5, ease: "power2.out" });
         });
         
-        // Effet magnétique sur les éléments interactifs
         const interactives = document.querySelectorAll('a, button');
         interactives.forEach(el => {
             el.addEventListener('mouseenter', () => {
-                gsap.to(cursorLarge, { scale: 3, backgroundColor: 'rgba(0, 255, 200, 0.1)', borderColor: 'transparent' });
-                gsap.to(cursorSmall, { scale: 0 });
+                gsap.to(cursorLarge, { scale: 3, borderColor: 'rgba(0, 255, 242, 0.5)', backgroundColor: 'rgba(0, 255, 242, 0.1)' });
             });
             el.addEventListener('mouseleave', () => {
-                 gsap.to(cursorLarge, { scale: 1, backgroundColor: 'transparent', borderColor: 'var(--neon-cyan)' });
-                 gsap.to(cursorSmall, { scale: 1 });
+                 gsap.to(cursorLarge, { scale: 1, borderColor: 'var(--neon-cyan)', backgroundColor: 'transparent' });
             });
         });
 
-        // --- LOGIQUE DU PORTFOLIO (Ton ancien script adapté) ---
+        // --- MENU ---
         const menuButton = document.getElementById('menu-button');
         const dropdown = document.getElementById('myDropdown');
         menuButton.onclick = function() { dropdown.classList.toggle('show'); };
@@ -166,6 +132,8 @@
                 if (dropdown.classList.contains('show')) { dropdown.classList.remove('show'); }
             }
         };
+
+        // --- LOGIQUE FICHIERS ---
         const tdLinks = document.querySelectorAll('.dropdown-content a');
         const submenus = document.querySelectorAll('.submenu');
         tdLinks.forEach(link => {
@@ -180,15 +148,15 @@
                 submenus.forEach(menu => menu.classList.remove('active-submenu'));
                 if (!isAlreadyActive && targetSubmenu) { 
                     targetSubmenu.classList.add('active-submenu');
-                    // Animation GSAP pour l'apparition des fichiers
                     gsap.fromTo(targetSubmenu.children, 
-                        { opacity: 0, y: 20, scale: 0.9 }, 
-                        { opacity: 1, y: 0, scale: 1, duration: 0.4, stagger: 0.1, ease: "back.out(1.7)" }
+                        { opacity: 0, y: 20 }, 
+                        { opacity: 1, y: 0, duration: 0.4, stagger: 0.1 }
                     );
                 }
                 dropdown.classList.remove('show');
             });
         });
+
         const pdfButtons = document.querySelectorAll('.pdf-button');
         const pdfViewer = document.getElementById('pdf-viewer');
         const defaultText = document.getElementById('default-text');
