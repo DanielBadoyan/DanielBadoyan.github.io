@@ -1,0 +1,314 @@
+/* --- IMPORTATION DES POLICES --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* --- VARIABLES MODERNES --- */
+:root {
+    /* Palette "Tech & Serenity" */
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --hover-gradient: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    --bg-gradient: radial-gradient(circle at top left, #fdfbfb 0%, #ebedee 100%);
+
+    --text-main: #2d3436;
+    --text-light: #636e72;
+    --white: #ffffff;
+
+    /* Ombres portées douces */
+    --shadow-soft: 0 10px 25px rgba(118, 75, 162, 0.15);
+    --shadow-hover: 0 15px 35px rgba(118, 75, 162, 0.25);
+
+    /* Bordures et Glassmorphism */
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.6);
+    --radius-lg: 20px;
+    --radius-pill: 50px;
+}
+
+/* --- RESET & BASE --- */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background: var(--bg-gradient);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    /* Empêche le scroll horizontal */
+}
+
+/* --- EN-TÊTE (HEADER) --- */
+header {
+    background: var(--white);
+    text-align: center;
+    padding: 3rem 1rem;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    z-index: 10;
+}
+
+header h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 2.5rem;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Texte en dégradé */
+    letter-spacing: -1px;
+}
+
+header p {
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    color: var(--text-light);
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* --- NAVIGATION --- */
+nav {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0 1rem 0;
+    position: relative;
+    z-index: 100;
+}
+
+.dropdown {
+    position: relative;
+}
+
+/* Le bouton principal (Pill Button) */
+.dropbtn {
+    background: var(--primary-gradient);
+    color: var(--white);
+    padding: 14px 40px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-soft);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    letter-spacing: 0.5px;
+}
+
+.dropbtn:hover,
+.dropbtn:focus {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Menu déroulant (Glassmorphism) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 60px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    /* Effet de flou derrière */
+    -webkit-backdrop-filter: blur(15px);
+    min-width: 260px;
+    box-shadow: var(--shadow-hover);
+    border-radius: var(--radius-lg);
+    border: var(--glass-border);
+    padding: 10px;
+    animation: slideDown 0.3s ease-out forwards;
+}
+
+.dropdown-content a {
+    color: var(--text-main);
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.dropdown-content a:hover {
+    background: rgba(118, 75, 162, 0.08);
+    color: #764ba2;
+    transform: translateX(5px);
+}
+
+.show {
+    display: block;
+}
+
+/* --- SOUS-MENUS (Liste des fichiers) --- */
+#submenu-container {
+    padding: 0 1rem 1.5rem 1rem;
+    min-height: 80px;
+    display: flex;
+    justify-content: center;
+}
+
+.submenu {
+    display: none;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    animation: fadeIn 0.5s ease;
+    max-width: 1000px;
+}
+
+.submenu.active-submenu {
+    display: flex;
+}
+
+/* Boutons de fichiers (Cartes minimalistes) */
+.pdf-button,
+.download-button {
+    background: var(--white);
+    color: var(--text-main);
+    padding: 12px 24px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+/* Icone visuelle CSS avant le texte */
+.pdf-button::before,
+.download-button::before {
+    content: '📄';
+    margin-right: 8px;
+    font-size: 1.1em;
+}
+
+.download-button::before {
+    content: '💾';
+}
+
+.pdf-button:hover,
+.download-button:hover {
+    background: var(--white);
+    color: #764ba2;
+    border-color: #764ba2;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(118, 75, 162, 0.15);
+}
+
+.pdf-button.active-btn {
+    background: #764ba2;
+    color: white;
+    box-shadow: var(--shadow-soft);
+}
+
+.pdf-button.active-btn::before {
+    content: '👁️';
+}
+
+/* --- ZONE PRINCIPALE (VIEWER) --- */
+main {
+    flex: 1;
+    padding: 0 20px 40px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+#pdf-viewer-container {
+    width: 100%;
+    max-width: 1100px;
+    height: 75vh;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+/* Fausse barre de fenêtre Mac/Browser pour le style */
+#pdf-viewer-container::before {
+    content: '';
+    display: block;
+    height: 30px;
+    background: #f1f2f6;
+    border-bottom: 1px solid #e1e1e1;
+    background-image: radial-gradient(circle, #ff5f56 4px, transparent 5px),
+        radial-gradient(circle, #ffbd2e 4px, transparent 5px),
+        radial-gradient(circle, #27c93f 4px, transparent 5px);
+    background-size: 50px 100%;
+    /* Espace les points */
+    background-position: 12px center;
+    /* Positionne les points */
+    background-repeat: no-repeat;
+}
+
+#pdf-viewer-container p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    text-align: center;
+    padding: 2rem;
+    align-self: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#pdf-viewer {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: none;
+    flex: 1;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .dropbtn {
+        width: 100%;
+        padding: 12px 20px;
+    }
+
+    #pdf-viewer-container {
+        height: 60vh;
+    }
+}

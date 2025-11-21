@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portfolio - Systèmes d'Information</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Portfolio - Systèmes d'Information</h1>
+        <p>Daniel Badoyan - Année Universitaire 2025-2026</p>
+    </header>
+
+    <nav>
+        <div class="dropdown">
+            <button id="menu-button" class="dropbtn">Choisir un Cours</button>
+            <div id="myDropdown" class="dropdown-content">
+                <a href="#" data-td="cours1">Cours 1 - Introduction & PGI</a>
+                <a href="#" data-td="cours2">Cours 2 - Odoo & Modélisation</a>
+                <a href="#" data-td="cours3">Cours 3 - Dossiers & Schémas</a>
+                <a href="#" data-td="cours4">Cours 4 - Livrables</a>
+                <a href="#" data-td="cours5">Cours 5 - Gantt & MCD</a>
+                <a href="#" data-td="cours6">Cours 6 - Diagrammes UML</a>
+                <a href="#" data-td="cours7">Cours 7 - (A venir)</a>
+            </div>
+        </div>
+    </nav>
+
+    <div id="submenu-container">
+        <div id="cours1-files" class="submenu">
+            <button class="pdf-button" data-src="pdfs/cours1/td_exercice_tableur.pdf">td_exercice_tableur.pdf</button>
+            <button class="pdf-button" data-src="pdfs/cours1/td_PGI_exercice.pdf">td_PGI_exercice.pdf</button>
+            <button class="pdf-button" data-src="pdfs/cours1/TD1_SI.pdf">TD1_SI.pdf</button>
+        </div>
+
+        <div id="cours2-files" class="submenu">
+            <button class="pdf-button" data-src="pdfs/cours2/TP_Odoo.pdf">TP_Odoo.pdf</button>
+            <button class="pdf-button" data-src="pdfs/cours2/TD2_si.pdf">TD2_si.pdf</button>
+        </div>
+
+        <div id="cours3-files" class="submenu">
+            <button class="pdf-button" data-src="pdfs/cours3/dossier_3.pdf">dossier_3.pdf</button>
+            <button class="pdf-button" data-src="pdfs/cours3/schema_td_si.pdf">schema_td_si.pdf</button>
+        </div>
+
+        <div id="cours4-files" class="submenu">
+            <button class="pdf-button" data-src="pdfs/cours4/les_livrables_SI.pdf">les_livrables_SI.pdf</button>
+            <button class="pdf-button" data-src="pdfs/cours4/schema_si.pdf">schema_si.pdf</button>
+        </div>
+
+        <div id="cours5-files" class="submenu">
+            <button class="pdf-button" data-src="pdfs/cours5/Online_Gantt.pdf">Online_Gantt.pdf</button>
+            <button class="pdf-button" data-src="pdfs/cours5/schema_mcd.pdf">schema_mcd.pdf</button>
+        </div>
+
+        <div id="cours6-files" class="submenu">
+            <button class="pdf-button" data-src="pdfs/cours6/Diagrammedeclasse.pdf">Diagrammedeclasse.pdf</button>
+            <button class="pdf-button" data-src="pdfs/cours6/USECASE.pdf">USECASE.pdf</button>
+        </div>
+
+        <div id="cours7-files" class="submenu">
+            <p style="color: #666; font-style: italic; padding: 10px;">Aucun document disponible pour ce cours.</p>
+        </div>
+    </div>
+
+    <main>
+        <div id="pdf-viewer-container">
+            <p id="default-text">Sélectionnez un Cours dans le menu puis un document pour l'afficher.</p>
+            <iframe id="pdf-viewer" src="" frameborder="0"></iframe>
+        </div>
+    </main>
+
+    <script>
+        const menuButton = document.getElementById('menu-button');
+        const dropdown = document.getElementById('myDropdown');
+
+        menuButton.onclick = function () {
+            dropdown.classList.toggle('show');
+        };
+
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                if (dropdown.classList.contains('show')) {
+                    dropdown.classList.remove('show');
+                }
+            }
+        };
+
+        const tdLinks = document.querySelectorAll('.dropdown-content a');
+        const submenus = document.querySelectorAll('.submenu');
+
+        tdLinks.forEach(link => {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                const tdId = this.getAttribute('data-td');
+                const targetSubmenu = document.getElementById(tdId + '-files');
+
+                // Reset du texte par défaut et de l'iframe
+                document.getElementById('default-text').style.display = 'block';
+                document.getElementById('pdf-viewer').style.display = 'none';
+                document.getElementById('pdf-viewer').src = "";
+
+                const isAlreadyActive = targetSubmenu && targetSubmenu.classList.contains('active-submenu');
+                submenus.forEach(menu => menu.classList.remove('active-submenu'));
+
+                if (!isAlreadyActive && targetSubmenu) {
+                    targetSubmenu.classList.add('active-submenu');
+                }
+
+                dropdown.classList.remove('show');
+            });
+        });
+
+        const pdfButtons = document.querySelectorAll('.pdf-button');
+        const pdfViewer = document.getElementById('pdf-viewer');
+        const defaultText = document.getElementById('default-text');
+
+        pdfButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                // Retirer la classe active de tous les boutons
+                pdfButtons.forEach(btn => btn.classList.remove('active-btn'));
+                // Ajouter la classe active au bouton cliqué (optionnel pour le style)
+                this.classList.add('active-btn');
+
+                const pdfSrc = this.getAttribute('data-src');
+                pdfViewer.src = pdfSrc;
+                defaultText.style.display = 'none';
+                pdfViewer.style.display = 'block';
+            });
+        });
+    </script>
+
+</body>
+
+</html>
