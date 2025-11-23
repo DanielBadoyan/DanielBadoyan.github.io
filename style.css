@@ -269,6 +269,27 @@ main {
     display: none;
     flex: 1;
 }
+/* --- Style Spécial pour le lien du Projet --- */
+.project-link {
+    display: inline-block; /* Pour qu'il se comporte comme les boutons */
+    background-color: #28a745; /* Vert (couleur de succès/action) */
+    color: white;
+    padding: 8px 20px;
+    margin-left: 10px; /* Un peu d'espace avec les autres */
+    text-decoration: none;
+    border-radius: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border: 1px solid #28a745;
+}
+
+.project-link:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+}
 
 /* --- ANIMATIONS --- */
 @keyframes slideDown {
