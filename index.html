@@ -1,144 +1,384 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Portfolio - Systèmes d'Information</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Portfolio SI - Daniel Badoyan</title>
+    <meta name="description" content="Portfolio académique - Systèmes d'Information">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: { univ: '#1e3a8a', accent: '#3b82f6' }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
+<body class="text-slate-700 antialiased">
 
-    <header>
-        <h1>Portfolio - Systèmes d'Information</h1>
-        <p>Mon nom - Année Universitaire 2025-2026</p>
-    </header>
-
-    <nav>
-        <div class="dropdown">
-            <button id="menu-button" class="dropbtn">Choisir un Cours</button>
-            <div id="myDropdown" class="dropdown-content">
-                <a href="#" data-td="cours1">Cours 1 - Introduction & PGI</a>
-                <a href="#" data-td="cours2">Cours 2 - Odoo & Modélisation</a>
-                <a href="#" data-td="cours3">Cours 3 - Dossiers & Schémas</a>
-                <a href="#" data-td="cours4">Cours 4 - Livrables</a>
-                <a href="#" data-td="cours5">Cours 5 - Gantt & MCD</a>
-                <a href="#" data-td="cours6">Cours 6 - Diagrammes UML</a>
-<a href="#" data-td="cours7">Cours 7 - Projet Final & Livrables 🚀</a>            </div>
+    <nav class="fixed w-full z-50 nav-glass">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <span class="font-bold text-xl text-slate-800 tracking-tight">PORTFOLIO<span class="text-accent">.SI</span></span>
+                </div>
+                <div class="hidden lg:flex space-x-8 items-center text-sm font-medium">
+                    <a href="#cours1" class="hover:text-accent transition-colors">Introduction</a>
+                    <a href="#cours2" class="hover:text-accent transition-colors">Modélisation</a>
+                    <a href="#cours3" class="hover:text-accent transition-colors">Dossiers</a>
+                    <a href="#cours4" class="hover:text-accent transition-colors">Livrables</a>
+                    <a href="#cours5" class="hover:text-accent transition-colors">Gestion</a>
+                    <a href="#cours6" class="hover:text-accent transition-colors">UML</a>
+                    <a href="#cours7" class="px-4 py-2 bg-slate-900 text-white rounded-lg hover:bg-accent transition-colors">Projet Final</a>
+                </div>
+            </div>
         </div>
     </nav>
 
-    <div id="submenu-container">
-        <div id="cours1-files" class="submenu">
-            <button class="pdf-button" data-src="pdfs/cours1/td_exercice_tableur.pdf">td_exercice_tableur.pdf</button>
-            <button class="pdf-button" data-src="pdfs/cours1/td_PGI_exercice.pdf">td_PGI_exercice.pdf</button>
-            <button class="pdf-button" data-src="pdfs/cours1/TD1_SI.pdf">TD1_SI.pdf</button>
+    <header class="pt-40 pb-20 px-4 text-center max-w-5xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-3 py-1 mb-6 text-xs font-bold tracking-wider text-accent uppercase bg-blue-50 rounded-full border border-blue-100 animate-fade-in">
+            <span class="w-2 h-2 rounded-full bg-accent"></span> Année Universitaire 2025-2026
         </div>
+        <h1 class="text-5xl md:text-6xl font-extrabold text-slate-900 mb-6 leading-tight animate-fade-in" style="animation-delay: 0.1s;">
+            Systèmes d'Information <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Portfolio Académique</span>
+        </h1>
+        <p class="text-xl text-slate-500 mb-8 max-w-2xl mx-auto animate-fade-in" style="animation-delay: 0.2s;">
+            Recueil complet des Travaux Dirigés, Travaux Pratiques et Projets réalisés au cours du semestre.
+        </p>
+    </header>
 
-        <div id="cours2-files" class="submenu">
-            <button class="pdf-button" data-src="pdfs/cours2/TP_Odoo.pdf">TP_Odoo.pdf</button>
-            <button class="pdf-button" data-src="pdfs/cours2/TD2_si.pdf">TD2_si.pdf</button>
-        </div>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 space-y-20">
 
-        <div id="cours3-files" class="submenu">
-            <button class="pdf-button" data-src="pdfs/cours3/dossier_3.pdf">dossier_3.pdf</button>
-            <button class="pdf-button" data-src="pdfs/cours3/schema_td_si.pdf">schema_td_si.pdf</button>
-        </div>
+        <section id="cours1" class="scroll-mt-28 animate-fade-in" style="animation-delay: 0.3s;">
+            <div class="flex items-center mb-8 border-b border-slate-200 pb-4">
+                <div class="rubric-number">1</div>
+                <div>
+                    <h2 class="rubric-title">Introduction & PGI</h2>
+                    <p class="text-sm text-slate-500">Bases des SI et découverte des Progiciels de Gestion Intégrés.</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <article class="glass-card p-6 rounded-2xl flex flex-col">
+                    <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-green-600 mb-4 text-xl"><i class="fas fa-file-excel"></i></div>
+                    <h3 class="font-bold text-slate-900 mb-1">Exercice Tableur</h3>
+                    <p class="text-xs text-slate-500 mb-4">td_exercice_tableur.exl</p>
+                    <a href="pdfs/cours1/td_exercice_tableur.pdf" download class="mt-auto w-full py-2 rounded-lg border border-slate-200 text-slate-600 text-sm font-medium hover:bg-slate-50 flex items-center justify-center gap-2 btn-preview">
+                        <i class="fas fa-download"></i> Télécharger
+                    </a>
+                </article>
+                <article class="glass-card p-6 rounded-2xl flex flex-col">
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 mb-4 text-xl"><i class="fas fa-database"></i></div>
+                    <h3 class="font-bold text-slate-900 mb-1">Exercice PGI</h3>
+                    <p class="text-xs text-slate-500 mb-4">td_PGI_exercice.pdf</p>
+                    <button onclick="openPreview('pdfs/cours1/td_PGI_exercice.pdf', 'Exercice PGI')" class="mt-auto w-full py-2 rounded-lg border border-slate-200 text-slate-600 text-sm font-medium flex items-center justify-center gap-2 btn-preview">
+                        <i class="far fa-eye"></i> Aperçu
+                    </button>
+                </article>
+                <article class="glass-card p-6 rounded-2xl flex flex-col">
+                    <div class="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center text-slate-600 mb-4 text-xl"><i class="fas fa-book"></i></div>
+                    <h3 class="font-bold text-slate-900 mb-1">TD 1 - Introduction</h3>
+                    <p class="text-xs text-slate-500 mb-4">TD1_SI.pdf</p>
+                    <button onclick="openPreview('pdfs/cours1/TD1_SI.pdf', 'TD1 Système Information')" class="mt-auto w-full py-2 rounded-lg border border-slate-200 text-slate-600 text-sm font-medium flex items-center justify-center gap-2 btn-preview">
+                        <i class="far fa-eye"></i> Aperçu
+                    </button>
+                </article>
+            </div>
+        </section>
 
-        <div id="cours4-files" class="submenu">
-            <button class="pdf-button" data-src="pdfs/cours4/les_livrables_SI.pdf">les_livrables_SI.pdf</button>
-            <button class="pdf-button" data-src="pdfs/cours4/schema_si.pdf">schema_si.pdf</button>
-        </div>
+        <section id="cours2" class="scroll-mt-28">
+            <div class="flex items-center mb-8 border-b border-slate-200 pb-4">
+                <div class="rubric-number">2</div>
+                <div>
+                    <h2 class="rubric-title">Odoo & Modélisation</h2>
+                    <p class="text-sm text-slate-500">Pratique sur ERP et premiers modèles.</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <article class="glass-card p-6 rounded-2xl flex items-center gap-4">
+                    <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center text-purple-600 text-2xl flex-shrink-0"><i class="fas fa-network-wired"></i></div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-slate-900">TP Odoo</h3>
+                        <p class="text-xs text-slate-500 mb-2">TP_Odoo.pdf</p>
+                        <button onclick="openPreview('pdfs/cours2/TP_Odoo.pdf', 'TP Odoo')" class="text-sm font-semibold text-accent hover:underline">Voir le document &rarr;</button>
+                    </div>
+                </article>
+                <article class="glass-card p-6 rounded-2xl flex items-center gap-4">
+                    <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center text-purple-600 text-2xl flex-shrink-0"><i class="fas fa-project-diagram"></i></div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-slate-900">TD 2 SI</h3>
+                        <p class="text-xs text-slate-500 mb-2">TD2_si.pdf</p>
+                        <button onclick="openPreview('pdfs/cours2/TD2_si.pdf', 'TD2 SI')" class="text-sm font-semibold text-accent hover:underline">Voir le document &rarr;</button>
+                    </div>
+                </article>
+            </div>
+        </section>
 
-        <div id="cours5-files" class="submenu">
-            <button class="pdf-button" data-src="pdfs/cours5/Online_Gantt.pdf">Online_Gantt.pdf</button>
-            <button class="pdf-button" data-src="pdfs/cours5/schema_mcd.pdf">schema_mcd.pdf</button>
-        </div>
+        <section id="cours3" class="scroll-mt-28">
+            <div class="flex items-center mb-8 border-b border-slate-200 pb-4">
+                <div class="rubric-number">3</div>
+                <h2 class="rubric-title">Dossiers & Schémas</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <article class="glass-card p-6 rounded-2xl">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="p-3 bg-orange-100 text-orange-600 rounded-lg"><i class="fas fa-folder-open text-xl"></i></div>
+                        <span class="text-xs font-bold px-2 py-1 bg-slate-100 rounded text-slate-500">Dossier</span>
+                    </div>
+                    <h3 class="font-bold text-lg mb-1">Dossier 3</h3>
+                    <button onclick="openPreview('pdfs/cours3/dossier_3.pdf', 'Dossier 3')" class="w-full mt-4 py-2 border border-slate-200 rounded-lg hover:bg-slate-50 text-sm font-medium">Ouvrir PDF</button>
+                </article>
+                <article class="glass-card p-6 rounded-2xl">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="p-3 bg-orange-100 text-orange-600 rounded-lg"><i class="fas fa-draw-polygon text-xl"></i></div>
+                        <span class="text-xs font-bold px-2 py-1 bg-slate-100 rounded text-slate-500">Schéma</span>
+                    </div>
+                    <h3 class="font-bold text-lg mb-1">Schéma TD SI</h3>
+                    <button onclick="openPreview('pdfs/cours3/schema_td_si.pdf', 'Schéma TD')" class="w-full mt-4 py-2 border border-slate-200 rounded-lg hover:bg-slate-50 text-sm font-medium">Ouvrir PDF</button>
+                </article>
+            </div>
+        </section>
 
-        <div id="cours6-files" class="submenu">
-            <button class="pdf-button" data-src="pdfs/cours6/Diagrammedeclasse.pdf">Diagrammedeclasse.pdf</button>
-            <button class="pdf-button" data-src="pdfs/cours6/USECASE.pdf">USECASE.pdf</button>
-        </div>
+        <section id="cours4" class="scroll-mt-28">
+            <div class="flex items-center mb-8 border-b border-slate-200 pb-4">
+                <div class="rubric-number">4</div>
+                <h2 class="rubric-title">Les Livrables</h2>
+            </div>
+            <div class="bg-white rounded-2xl border border-slate-200 p-1">
+                <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-100">
+                    <div class="p-6 hover:bg-slate-50 transition-colors cursor-pointer" onclick="openPreview('pdfs/cours4/les_livrables_SI.pdf', 'Les Livrables SI')">
+                        <div class="flex items-center gap-4">
+                            <i class="fas fa-file-contract text-3xl text-teal-500"></i>
+                            <div>
+                                <h4 class="font-bold text-slate-800">Cours sur les Livrables</h4>
+                                <p class="text-xs text-slate-500">Comprendre les attendus d'un projet SI</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 hover:bg-slate-50 transition-colors cursor-pointer" onclick="openPreview('pdfs/cours4/schema_si.pdf', 'Schéma SI')">
+                        <div class="flex items-center gap-4">
+                            <i class="fas fa-sitemap text-3xl text-teal-500"></i>
+                            <div>
+                                <h4 class="font-bold text-slate-800">Schéma SI Global</h4>
+                                <p class="text-xs text-slate-500">Vue d'ensemble architecturale</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-       <div id="cours7-files" class="submenu">
-    <button class="pdf-button" data-src="pdfs/cours7/Cahier_des_charges.pdf">Cahier des charges.pdf</button>
-    <button class="pdf-button" data-src="pdfs/cours7/Rapport_Projet.pdf">Rapport de Projet.pdf</button>
-    <button class="pdf-button" data-src="pdfs/cours7/Presentation.pdf">Présentation.pdf</button>
+        <section id="cours5" class="scroll-mt-28">
+            <div class="flex items-center mb-8 border-b border-slate-200 pb-4">
+                <div class="rubric-number">5</div>
+                <h2 class="rubric-title">Gestion : Gantt & MCD</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer" onclick="openPreview('pdfs/cours5/Online_Gantt.pdf', 'Diagramme de Gantt')">
+                    <div class="h-32 bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center">
+                        <i class="fas fa-stream text-white text-5xl opacity-80 group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg mb-1">Planning Gantt</h3>
+                        <p class="text-sm text-slate-500">Planification temporelle du projet</p>
+                    </div>
+                </div>
+                <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer" onclick="openPreview('pdfs/cours5/schema_mcd.pdf', 'Schéma MCD')">
+                    <div class="h-32 bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center">
+                        <i class="fas fa-database text-white text-5xl opacity-80 group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg mb-1">Modèle Conceptuel de Données</h3>
+                        <p class="text-sm text-slate-500">Structure de la base de données</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <a href="https://bander-shop.kesug.com/" target="_blank" class="project-link">
-        🌍 Accéder au Projet
-    </a>
+        <section id="cours6" class="scroll-mt-28">
+            <div class="flex items-center mb-8 border-b border-slate-200 pb-4">
+                <div class="rubric-number">6</div>
+                <h2 class="rubric-title">Diagrammes UML</h2>
+            </div>
+            <div class="glass-card rounded-2xl p-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <button onclick="openPreview('pdfs/cours6/Diagrammedeclasse.pdf', 'Diagramme de Classe')" class="flex items-center p-4 border border-slate-200 rounded-xl hover:bg-slate-50 hover:border-slate-300 transition-all group text-left">
+                        <div class="w-10 h-10 rounded-full bg-pink-50 text-pink-500 flex items-center justify-center mr-4 group-hover:bg-pink-100 transition-colors">
+                            <i class="fas fa-shapes"></i>
+                        </div>
+                        <div>
+                            <span class="block font-bold text-slate-800">Diagramme de Classe</span>
+                            <span class="text-xs text-slate-500">Structure statique</span>
+                        </div>
+                    </button>
 
-    </div>
+                    <button onclick="openPreview('pdfs/cours6/USECASE.pdf', 'Use Case')" class="flex items-center p-4 border border-slate-200 rounded-xl hover:bg-slate-50 hover:border-slate-300 transition-all group text-left">
+                        <div class="w-10 h-10 rounded-full bg-pink-50 text-pink-500 flex items-center justify-center mr-4 group-hover:bg-pink-100 transition-colors">
+                            <i class="fas fa-users-cog"></i>
+                        </div>
+                        <div>
+                            <span class="block font-bold text-slate-800">Use Case</span>
+                            <span class="text-xs text-slate-500">Cas d'utilisation</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </section>
 
-    <main>
-        <div id="pdf-viewer-container">
-            <p id="default-text">Sélectionnez un Cours dans le menu puis un document pour l'afficher.</p>
-            <iframe id="pdf-viewer" src="" frameborder="0"></iframe>
-        </div>
+        <section id="cours7" class="scroll-mt-28">
+            <div class="flex items-center mb-8 border-b border-slate-200 pb-4">
+                <div class="rubric-number bg-gradient-to-br from-slate-700 to-black">7</div>
+                <div>
+                    <h2 class="rubric-title">Projet Final</h2>
+                    <p class="text-sm text-slate-500">Aboutissement du semestre</p>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden shadow-2xl">
+                <div class="absolute top-0 right-0 -mt-10 -mr-10 w-64 h-64 bg-accent rounded-full opacity-20 blur-3xl"></div>
+                
+                <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-3xl font-bold mb-4">Projet de Synthèse</h3>
+                        <p class="text-slate-300 mb-8 leading-relaxed">
+                            Ce projet regroupe l'ensemble des compétences acquises : analyse, conception, planification et réalisation. Retrouvez ici tous les documents contractuels et techniques.
+                        </p>
+                        
+                        <a href="https://ton-lien-projet.com" target="_blank" class="inline-flex items-center px-6 py-3 bg-accent hover:bg-blue-600 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-accent/50 mb-8 transform hover:-translate-y-1">
+                            <i class="fas fa-rocket mr-2"></i> Accéder au Site Web
+                        </a>
+
+                        <div class="space-y-3">
+                            <h4 class="text-sm uppercase tracking-wider text-slate-500 font-bold">Documentation</h4>
+                            
+                            <button onclick="openPreview('pdfs/cours7/Cahier_des_charges.pdf', 'Cahier des Charges')" class="w-full flex items-center justify-between p-3 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors border border-slate-700">
+                                <span class="flex items-center gap-3"><i class="fas fa-file-signature text-yellow-400"></i> Cahier des charges</span>
+                                <i class="fas fa-eye text-slate-500"></i>
+                            </button>
+
+                            <button onclick="openPreview('pdfs/cours7/Rapport_Projet.pdf', 'Rapport de Projet')" class="w-full flex items-center justify-between p-3 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors border border-slate-700">
+                                <span class="flex items-center gap-3"><i class="fas fa-book text-green-400"></i> Rapport Final</span>
+                                <i class="fas fa-eye text-slate-500"></i>
+                            </button>
+
+                            <button onclick="openPreview('pdfs/cours7/Presentation.pdf', 'Présentation')" class="w-full flex items-center justify-between p-3 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors border border-slate-700">
+                                <span class="flex items-center gap-3"><i class="fas fa-desktop text-purple-400"></i> Support Présentation</span>
+                                <i class="fas fa-eye text-slate-500"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="hidden lg:flex items-center justify-center">
+                        <div class="w-full aspect-square bg-gradient-to-tr from-slate-800 to-slate-700 rounded-2xl border border-slate-600 flex items-center justify-center p-8">
+                            <i class="fas fa-layer-group text-9xl text-slate-600 opacity-50"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
+    <footer class="bg-white border-t border-slate-200 py-12 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="font-bold text-slate-900 text-lg">Daniel Badoyan</p>
+            <p class="text-slate-500 text-sm mt-2">Portfolio Universitaire - Systèmes d'Information - 2025</p>
+        </div>
+    </footer>
+
+    <div id="previewModal" class="fixed inset-0 z-[100] hidden" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 modal-backdrop transition-opacity" onclick="closePreview()"></div>
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-center justify-center p-4">
+                <div class="relative transform overflow-hidden rounded-2xl bg-white shadow-2xl transition-all w-full max-w-6xl h-[90vh] flex flex-col">
+                    <div class="bg-white px-6 py-4 flex justify-between items-center border-b border-slate-100">
+                        <h3 class="text-lg font-bold text-slate-900" id="modalTitle">Aperçu</h3>
+                        <div class="flex gap-2">
+                            <a id="downloadLink" href="#" download class="px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-700 text-sm font-bold transition-colors">
+                                <i class="fas fa-download mr-1"></i> Télécharger
+                            </a>
+                            <button type="button" class="text-slate-400 hover:text-slate-600 transition-colors" onclick="closePreview()">
+                                <i class="fas fa-times text-2xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex-1 bg-slate-50 relative w-full h-full">
+                         <div id="loader" class="absolute inset-0 flex items-center justify-center">
+                            <div class="animate-spin rounded-full h-12 w-12 border-4 border-slate-200 border-t-accent"></div>
+                         </div>
+                         <iframe id="previewFrame" class="w-full h-full border-0 hidden" src="" onload="document.getElementById('loader').style.display='none'"></iframe>
+                         
+                         <div id="noPreview" class="hidden absolute inset-0 flex-col items-center justify-center p-10 text-center">
+                            <i class="fas fa-file-pdf text-6xl text-slate-300 mb-4"></i>
+                            <p class="text-slate-600 text-lg mb-6">Aperçu indisponible pour ce fichier.</p>
+                            <a id="fallbackLink" href="#" target="_blank" class="px-6 py-3 bg-accent text-white rounded-xl font-bold hover:bg-blue-600 transition-colors shadow-lg shadow-blue-500/30">
+                              Ouvrir le fichier
+                            </a>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        const menuButton = document.getElementById('menu-button');
-        const dropdown = document.getElementById('myDropdown');
-        
-        menuButton.onclick = function() {
-            dropdown.classList.toggle('show');
-        };
+        // Logique de la modale
+        const modal = document.getElementById('previewModal');
+        const frame = document.getElementById('previewFrame');
+        const modalTitle = document.getElementById('modalTitle');
+        const loader = document.getElementById('loader');
+        const noPreview = document.getElementById('noPreview');
+        const downloadLink = document.getElementById('downloadLink');
+        const fallbackLink = document.getElementById('fallbackLink');
 
-        window.onclick = function(event) {
-            if (!event.target.matches('.dropbtn')) {
-                if (dropdown.classList.contains('show')) {
-                    dropdown.classList.remove('show');
+        function openPreview(url, title) {
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Empêche le scroll background
+            
+            modalTitle.innerText = title || 'Document';
+            downloadLink.href = url;
+            fallbackLink.href = url;
+            
+            loader.style.display = 'flex';
+            frame.style.display = 'none';
+            noPreview.style.display = 'none';
+            frame.src = '';
+
+            // Petit délai pour l'UX
+            setTimeout(() => {
+                // Vérification basique de l'extension
+                const ext = url.split('.').pop().toLowerCase();
+                if (['pdf', 'jpg', 'jpeg', 'png', 'txt'].includes(ext)) {
+                    frame.src = url;
+                    frame.style.display = 'block';
+                } else {
+                    loader.style.display = 'none';
+                    noPreview.style.display = 'flex';
                 }
-            }
-        };
+            }, 300);
+        }
 
-        const tdLinks = document.querySelectorAll('.dropdown-content a');
-        const submenus = document.querySelectorAll('.submenu');
+        function closePreview() {
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            frame.src = '';
+        }
 
-        tdLinks.forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-                const tdId = this.getAttribute('data-td');
-                const targetSubmenu = document.getElementById(tdId + '-files');
-
-                // Reset du texte par défaut et de l'iframe
-                document.getElementById('default-text').style.display = 'block';
-                document.getElementById('pdf-viewer').style.display = 'none';
-                document.getElementById('pdf-viewer').src = "";
-
-                const isAlreadyActive = targetSubmenu && targetSubmenu.classList.contains('active-submenu');
-                submenus.forEach(menu => menu.classList.remove('active-submenu'));
-                
-                if (!isAlreadyActive && targetSubmenu) {
-                    targetSubmenu.classList.add('active-submenu');
-                }
-                
-                dropdown.classList.remove('show');
-            });
-        });
-
-        const pdfButtons = document.querySelectorAll('.pdf-button');
-        const pdfViewer = document.getElementById('pdf-viewer');
-        const defaultText = document.getElementById('default-text');
-
-        pdfButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                // Retirer la classe active de tous les boutons
-                pdfButtons.forEach(btn => btn.classList.remove('active-btn'));
-                // Ajouter la classe active au bouton cliqué (optionnel pour le style)
-                this.classList.add('active-btn');
-
-                const pdfSrc = this.getAttribute('data-src');
-                pdfViewer.src = pdfSrc;
-                defaultText.style.display = 'none';
-                pdfViewer.style.display = 'block';
-            });
+        // Fermer avec ECHAP
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") closePreview();
         });
     </script>
-
 </body>
 </html>
